@@ -4,6 +4,7 @@ node_modules/
 
 # Ignore built ts files
 dist/**/*
+dist
 
 # Ignore .env file for secrets
 .env
