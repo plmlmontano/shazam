@@ -9,7 +9,7 @@ export const collectionUsers: { users?: mongoDB.Collection<Users> } = {}
 export const connectDatabase = async () => {
     dotenv.config()
 
-    const client = new mongoDB.MongoClient(process.env.DB_CONN_STRING || process.env.DB_CONN_STRING_DOCKER)
+    const client = new mongoDB.MongoClient(process.env.DB_CONN_STRING_DOCKER)
 
     await client.connect()
 

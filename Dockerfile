@@ -1,7 +1,6 @@
 FROM node:16.15.0
-WORKDIR /test/app
+WORKDIR /app
 COPY package*.json ./
 RUN npm install
-COPY . . 
-#EXPOSE: 80818
+COPY . .
 CMD ["npm","start"]
