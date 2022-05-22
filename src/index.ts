@@ -18,34 +18,56 @@ const swaggerSpec = {
         openapi: '3.0.0',
         info: {
             title: 'Shazam API Documentation',
+            description:
+                "Esta API es documentada con Swagger, así se puede lograr un correcto y adecuado manejo a la misma.",
+            contact: {
+                name: "Lina Maria Montaño Ramirez",
+                email: "codelinamaria@gmail.com",
+            },
             version: '1.0.0'
         },
-        servers: [
-            {
-                url: 'http://localhost:5000/',
-            }
-        ],
+        servers: ["http://localhost:5000/", "http://34.66.155.91:5000/"],
         components: {
             securitySchemes: {
-              bearerAuth: {
-                type: "http",
-                scheme: "bearer",
-                in: "header",
-              },
+                bearerAuth: {
+                    type: "http",
+                    scheme: "bearer",
+                    in: "header",
+                },
             },
-          },
-          security: [
+        },
+        security: [
             {
                 bearerAuth: {
                     type: "http",
                     scheme: "bearer",
-                  },
+                },
             },
-          ],
+        ],
     },
     apis: ['./dist/docs/*.js']
-    
+
 }
+app.get('/', (req, res) => {
+    res.send([
+        "Bienvenidos a la API Rest para crear y listar Musica SHAZAM",
+        {
+            info: "Endpoint con Autorizacion por token",
+            auth: "Para poder acceder a los datos se debe logear este devuelve un token",
+            urlLocal: "http://localhost:5000/auth/login",
+            urlServer: "http://34.66.155.91:5000/auth/login",
+            pd: "Si no tienes creada una cuenta para logearte puedes ingresar a la siguiente url: http://localhost:5000/auth/signin o http://34.66.155.91:5000/auth/signin"
+        }, 
+        {
+            info: "Servidor local con token",
+            url: "http://localhost:5000/songs"
+        }, 
+        { 
+            info: "Servidor Cloud con token",
+            url: "http://34.66.155.91:5000/songs" 
+        }
+    ])
+})
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerJsdoc(swaggerSpec)))
 
