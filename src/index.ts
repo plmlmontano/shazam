@@ -26,7 +26,11 @@ const swaggerSpec = {
             },
             version: '1.0.0'
         },
-        servers: ["http://localhost:5000/", "http://34.66.155.91:5000/"],
+        servers: [
+            {
+                url: "http://34.66.155.91:5000/",
+            }
+        ],
         components: {
             securitySchemes: {
                 bearerAuth: {
