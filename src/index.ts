@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import cors from "cors";
 import * as dotenv from "dotenv";
 import { connectDatabase } from "./services/database.service";
 import { songRouter } from "./routes/songs.routes";
@@ -11,6 +12,7 @@ import swaggerJsdoc from "swagger-jsdoc";
 const app = express();
 dotenv.config();
 
+app.use(cors())
 app.set("port", process.env.PORT || 3000);
 
 const swaggerSpec = {
@@ -29,6 +31,11 @@ const swaggerSpec = {
         servers: [
             {
                 url: "http://34.66.155.91:5000/",
+                description: "Servidor"
+            },
+            {
+                url: "http://localhost:5000/",
+                description: "Local"
             }
         ],
         components: {
